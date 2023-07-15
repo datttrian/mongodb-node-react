@@ -1,5 +1,5 @@
 const Header = ({ message }) => {
-  console.log("Rendering Header Element");
+  //   console.log("Rendering Header Element");
   return <div className="header">{message}</div>;
 };
 
