@@ -1,8 +1,7 @@
 import express from "express";
 import os from "os";
 
-import config from "./config";
-console.log(config);
+import { HOST, PORT, SERVER_URL } from "./config";
 const server = express();
 
 server.use(express.static("dist"));
@@ -15,9 +14,9 @@ server.use("/", (req, res) => {
   });
 });
 
-server.listen(config.PORT, config.HOST, () => {
+server.listen(PORT, HOST, () => {
   console.info(
-    `Express server listening on port ${config.SERVER_URL}`,
+    `Express server listening on port ${SERVER_URL}`,
     `Free Mem: ${os.freemem() / 1024 / 1024}`,
   );
 });
