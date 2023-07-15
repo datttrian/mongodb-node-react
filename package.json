@@ -1,0 +1,15 @@
+{
+  "name": "mongodb-node-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/datttrian/mongodb-node-react",
+  "author": "Dat T. Tran <datttrian@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0"
+  }
+}
