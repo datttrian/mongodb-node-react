@@ -2,17 +2,16 @@ import { useEffect, useState } from "react";
 import { fetchContest } from "../api-client";
 import Header from "./Header";
 
-const Contest = ({ id }) => {
-  const [contest, setContest] = useState<{
-    contestName: string;
-    description: string;
-  }>({ contestName: "Naming Contests", description: "" });
+const Contest = ({ initialContest }) => {
+  const [contest, setContest] = useState(initialContest);
 
   useEffect(() => {
-    fetchContest(id).then((contest) => {
-      setContest(contest);
-    });
-  }, [id]);
+    if (!contest.names) {
+      fetchContest(contest.id).then((contest) => {
+        setContest(contest);
+      });
+    }
+  }, [contest.id, contest.names]);
 
   return (
     <>
