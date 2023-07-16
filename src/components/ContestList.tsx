@@ -1,21 +1,27 @@
-import ContestPreview from "./ContestPreview";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import { fetchContests } from "../api-client";
 
-const ContestList = ({ initialContests }) => {
+import ContestPreview from "./ContestPreview";
+
+const ContestList = ({ initialContests, onContestClick }) => {
   const [contests, setContests] = useState(initialContests);
+
   useEffect(() => {
     // fetchContests().then((contests) => {
     //   setContests(contests);
     // });
   }, []);
-  //   root.render(<App initialData={{ contests: [] }} />);
 
   return (
     <div className="contest-list">
       {contests.map((contest) => {
         return (
-          <ContestPreview key={contest.id} contest={contest} />
+          <ContestPreview
+            key={contest.id}
+            contest={contest}
+            onClick={onContestClick}
+          />
         );
       })}
     </div>
