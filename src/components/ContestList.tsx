@@ -5,10 +5,9 @@ import { fetchContests } from "../api-client";
 const ContestList = ({ initialContests }) => {
   const [contests, setContests] = useState(initialContests);
   useEffect(() => {
-    fetchContests().then((contests) => {
-      // state
-      setContests(contests);
-    });
+    // fetchContests().then((contests) => {
+    //   setContests(contests);
+    // });
   }, []);
   //   root.render(<App initialData={{ contests: [] }} />);
 
