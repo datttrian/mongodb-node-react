@@ -8,11 +8,11 @@ const ContestPreview: React.FC<{
     event.preventDefault();
 
     // Navigate to a new view
-    onClick();
+    onClick(contest.id);
   };
 
   return (
-    <div className="contest-preview" onClick={handleClick}>
+    <div className="contest-preview link" onClick={handleClick}>
       <div className="category">{contest.categoryName}</div>
       <div className="contest">{contest.contestName}</div>
     </div>
