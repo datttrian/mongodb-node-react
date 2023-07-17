@@ -4,6 +4,7 @@ import { connectClient } from "./db";
 
 const router = express.Router();
 router.use(cors());
+router.use(express.json());
 router.get("/contests", async (req, res) => {
   const client = await connectClient();
 
@@ -23,12 +24,34 @@ router.get("/contests", async (req, res) => {
 
 router.get("/contests/:contestId", async (req, res) => {
   const client = await connectClient();
-  // req.params.contestId
-  console.log(req.params.contestId);
   const contests = await client
     .collection("contests")
     .findOne({ id: req.params.contestId });
   res.send({ contests });
+});
+
+router.post("/contests/:contestId", async (req, res) => {
+  const client = await connectClient();
+
+  const { newNameValue } = req.body;
+  const doc = await client
+    .collection("contests")
+    .findOneAndUpdate(
+      { id: req.params.contestId },
+      {
+        $push: {
+          names: {
+            id: newNameValue.toLowerCase().replace(/\s/g, "-"),
+            name: newNameValue,
+            timestamp: new Date(),
+          },
+        },
+      },
+      { returnDocument: "after" },
+    );
+
+  // doc.value
+  res.send({ updatedContest: doc.value });
 });
 
 export default router;
